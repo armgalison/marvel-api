@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Post, Query, UseInterceptors, Body } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query, UseInterceptors } from '@nestjs/common';
 import { DeepPartial } from 'typeorm';
 
 import { CharacterEntity } from '../../database/entities/charater.entity';
@@ -22,13 +22,16 @@ export class CharacterController {
 
   @Get(':id')
   @UseInterceptors(NotFoundInterceptor)
-  async getCharacterById(@Param('id') id: number) {
+  async getCharacterById(
+    @Param('id') id: number
+  ) {
     return await this.characterService.findCharacterById(id);
   }
 
   @Post()
-  async createCharacter(@Body() character: DeepPartial<CharacterEntity>) {
-    console.log(character)
+  async createCharacter(
+    @Body() character: DeepPartial<CharacterEntity>
+  ) {
     return await this.characterService.createCharacter(character);
   }
 }
