@@ -1,5 +1,10 @@
 # Basic Marvel API
 
+![swagger-image](./assets/swagger.png)
+```bash
+  Swagger URL: http://localhost:3000/v1/public/docs
+```
+
 ## Description
 
 This app is an example of an Rest Aplication, based on the following Marvel API:
