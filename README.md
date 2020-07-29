@@ -33,10 +33,13 @@ $ npm run start:dev
 # production mode
 $ npm run start:prod
 ```
+PS: After run you can test this application by accessing the following URI "/v1/public/docs/".
 
 ## Stay in touch
 
-- Author - [Alison Rafael](https://github.com/armgalison)
+- Author: Alison Rafael
+  - [github](https://github.com/armgalison/)
+  - [linkedin](https://www.linkedin.com/in/armgalison/)
 
 ## License
 
