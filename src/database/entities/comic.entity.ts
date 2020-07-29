@@ -1,6 +1,16 @@
-import { BaseEntity, Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  BaseEntity,
+  BeforeInsert,
+  BeforeUpdate,
+  Column,
+  Entity,
+  JoinTable,
+  ManyToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 import { UrlEntity } from './url.entity';
+import { CharacterEntity } from './charater.entity';
 
 @Entity({ name: 'comic' })
 export class ComicEntity extends BaseEntity {
@@ -10,8 +20,8 @@ export class ComicEntity extends BaseEntity {
   @Column()
   digitalId?: number;
 
-  @Column()
-  title?: string;
+  @Column({ nullable: false, unique: true })
+  title: string;
 
   @Column()
   issueNumber?: number;
@@ -19,7 +29,7 @@ export class ComicEntity extends BaseEntity {
   @Column()
   variantDescription?: string;
 
-  @Column()
+  @Column({ nullable: true })
   description?: string;
 
   @Column()
@@ -43,10 +53,16 @@ export class ComicEntity extends BaseEntity {
   @Column()
   format?: string;
 
-  @Column()
-  pageCount?: string;
-
   @ManyToMany(type => UrlEntity)
   @JoinTable()
   urls?: UrlEntity[];
+
+  @ManyToMany(type => CharacterEntity, character => character.comics)
+  characters?: CharacterEntity[];
+
+  @BeforeInsert()
+  @BeforeUpdate()
+  updateModifiedDate() {
+    this.modified = new Date();
+  }
 }

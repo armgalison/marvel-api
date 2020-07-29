@@ -9,6 +9,7 @@ import {
   ManyToMany,
   OneToOne,
   PrimaryGeneratedColumn,
+  AfterInsert,
 } from 'typeorm';
 
 import { ImageEntity } from './image.entity';
@@ -26,7 +27,7 @@ export class CharacterEntity extends BaseEntity {
   @Column()
   modified?: Date;
 
-  @Column()
+  @Column({ unique: true })
   name?: string;
 
   @OneToOne(type => ImageEntity, { eager: true, cascade: true })
@@ -37,8 +38,8 @@ export class CharacterEntity extends BaseEntity {
   @JoinTable()
   urls?: UrlEntity[];
 
-  @ManyToMany(type => ComicEntity, { eager: true, cascade: true })
-  @JoinTable()
+  @ManyToMany(type => ComicEntity, comic => comic.characters, { cascade: true })
+  @JoinTable({ name: 'characters_comics' })
   comics?: ComicEntity[];
 
   @BeforeInsert()
