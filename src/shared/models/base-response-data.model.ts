@@ -5,7 +5,7 @@ export class BaseResponseData <T> {
     limit: number,
     total: number,
     count: number,
-    results: T
+    results: Array<T>
   }) {
     this.code = Number(baseResponseData.code);
     this.data = {
@@ -23,6 +23,6 @@ export class BaseResponseData <T> {
     limit: number;
     total: number;
     count: number;
-    results: T;
+    results: Array<T>;
   }
 }

@@ -3,7 +3,9 @@ import { ConfigService } from '@nestjs/config';
 import { DeepPartial, FindManyOptions, FindOneOptions, Repository } from 'typeorm';
 
 import { CharacterEntity } from '../../database/entities/charater.entity';
+import { ComicEntity } from '../../database/entities/comic.entity';
 import { BaseResponseData } from '../../shared/models/base-response-data.model';
+import { BaseSingleResponseData } from '../../shared/models/base-single-response-data.model';
 
 @Injectable()
 export class CharacterService {
@@ -54,11 +56,7 @@ export class CharacterService {
       throw new NotFoundException(`Comic {${comicId}} not found into current character`);
     }
 
-    return {
-      code: 200,
-      status: 'ok',
-      data: comic
-    };
+    return new BaseSingleResponseData<ComicEntity>(200, 'Ok', comic);
   }
 
   async updateCharacter(id: number, character: DeepPartial<CharacterEntity>) {

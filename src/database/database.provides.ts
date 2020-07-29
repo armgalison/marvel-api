@@ -7,12 +7,8 @@ export const databaseProviders = [
   {
     provide: 'DATABASE_CONNECTION',
     useFactory: async () => await createConnection({
-      type: 'mariadb',
-      host: process.env.DATABASE_HOST,
-      port: Number(process.env.DATABASE_PORT),
-      username: process.env.DATA_USER,
-      password: process.env.DATABASE_PASSWORD,
-      database: process.env.DATABASE,
+      type: 'sqlite',
+      database: process.env.DATABASE_FILE,
       entities: [
           __dirname + '/../**/*.entity{.ts,.js}',
       ],
