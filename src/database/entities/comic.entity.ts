@@ -11,46 +11,48 @@ import {
 
 import { UrlEntity } from './url.entity';
 import { CharacterEntity } from './charater.entity';
+import { SerieEntity } from './serie.entity';
+import { StoryEntity } from './story.entity';
 
 @Entity({ name: 'comic' })
 export class ComicEntity extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ nullable: true })
   digitalId?: number;
 
   @Column({ nullable: false, unique: true })
   title: string;
 
-  @Column()
+  @Column({ nullable: true })
   issueNumber?: number;
 
-  @Column()
+  @Column({ nullable: true })
   variantDescription?: string;
 
+  @Column()
+  description: string;
+
+  @Column()
+  modified: Date;
+
   @Column({ nullable: true })
-  description?: string;
-
-  @Column()
-  modified?: Date;
-
-  @Column()
   isbn?: string;
 
-  @Column()
+  @Column({ nullable: true })
   upc?: string;
 
-  @Column()
+  @Column({ nullable: true })
   diamondCode?: string;
 
-  @Column()
+  @Column({ nullable: true })
   ean?: string;
 
-  @Column()
+  @Column({ nullable: true })
   issn?: string;
 
-  @Column()
+  @Column({ nullable: true })
   format?: string;
 
   @ManyToMany(type => UrlEntity)
@@ -59,6 +61,12 @@ export class ComicEntity extends BaseEntity {
 
   @ManyToMany(type => CharacterEntity, character => character.comics)
   characters?: CharacterEntity[];
+
+  @ManyToMany(type => StoryEntity, story => story.comics)
+  stories?: StoryEntity[];
+
+  @ManyToMany(type => SerieEntity, serie => serie.comics)
+  series?: SerieEntity[];
 
   @BeforeInsert()
   @BeforeUpdate()

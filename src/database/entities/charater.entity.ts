@@ -14,6 +14,8 @@ import {
 import { ComicEntity } from './comic.entity';
 import { EventEntity } from './event.entity';
 import { ImageEntity } from './image.entity';
+import { SerieEntity } from './serie.entity';
+import { StoryEntity } from './story.entity';
 import { UrlEntity } from './url.entity';
 
 @Entity({ name: 'character' })
@@ -22,13 +24,13 @@ export class CharacterEntity extends BaseEntity {
   id: number;
 
   @Column()
-  description?: string;
+  description: string;
 
   @Column()
-  modified?: Date;
+  modified: Date;
 
   @Column({ unique: true })
-  name?: string;
+  name: string;
 
   @OneToOne(type => ImageEntity, { eager: true, cascade: true })
   @JoinColumn()
@@ -45,6 +47,14 @@ export class CharacterEntity extends BaseEntity {
   @ManyToMany(type => EventEntity, event => event.characters, { cascade: true })
   @JoinTable({ name: 'characters_events' })
   events?: EventEntity[];
+
+  @ManyToMany(type => SerieEntity, serie => serie.characters, { cascade: true })
+  @JoinTable({ name: 'characters_series' })
+  series?: SerieEntity[];
+
+  @ManyToMany(type => StoryEntity, story => story.characters, { cascade: true })
+  @JoinTable({ name: 'characters_stories' })
+  stories?: StoryEntity[];
 
   @BeforeInsert()
   @BeforeUpdate()

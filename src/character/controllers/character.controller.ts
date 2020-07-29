@@ -71,4 +71,58 @@ export class CharacterController {
   ) {
     return await this.characterService.findComicFromCharacterById(id, comicId);
   }
+
+  @Get(':id/events')
+  @UseInterceptors(NotFoundInterceptor)
+  async getEventsFromCharacter(
+    @Param('id') id: number,
+    @Query('offset') offset: number,
+    @Query('limit') limit: number
+  ) {
+    return await this.characterService.findAllEventsFromCharacter(id, offset, limit);
+  }
+
+  @Get(':id/events/:eventId')
+  async getEventFromCharacter(
+    @Param('id') id: number,
+    @Param('eventId') eventId: number
+  ) {
+    return await this.characterService.findEventFromCharacterById(id, eventId);
+  }
+
+  @Get(':id/series')
+  @UseInterceptors(NotFoundInterceptor)
+  async getSeriesFromCharacter(
+    @Param('id') id: number,
+    @Query('offset') offset: number,
+    @Query('limit') limit: number
+  ) {
+    return await this.characterService.findAllSeriesFromCharacter(id, offset, limit);
+  }
+
+  @Get(':id/series/:serieId')
+  async getSerieFromCharacter(
+    @Param('id') id: number,
+    @Param('serieId') serieId: number
+  ) {
+    return await this.characterService.findSerieFromCharacterById(id, serieId);
+  }
+
+  @Get(':id/stories')
+  @UseInterceptors(NotFoundInterceptor)
+  async getStoriesFromCharacter(
+    @Param('id') id: number,
+    @Query('offset') offset: number,
+    @Query('limit') limit: number
+  ) {
+    return await this.characterService.findAllStoriesFromCharacter(id, offset, limit);
+  }
+
+  @Get(':id/stories/:storyId')
+  async getStoryFromCharacter(
+    @Param('id') id: number,
+    @Param('storyId') storyId: number
+  ) {
+    return await this.characterService.findStoryFromCharacterById(id, storyId);
+  }
 }
