@@ -1,4 +1,4 @@
-# Basic Marvel API
+# Marvel API
 
 ![swagger-image](./assets/swagger.png)
 ```bash
