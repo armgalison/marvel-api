@@ -10,6 +10,12 @@ Developed using the framework Nest to have a good structure and to facilicate fu
 
 In this app I decided to use sqlite3 as a database, to make it easier for anyone to test.
 
+## Requirements
+```bash
+NodeJS - latest
+NPM - latest
+```
+
 ## Installation
 
 ```bash
