@@ -39,7 +39,11 @@ export class CharacterService {
   }
 
   async findCharacterById(id: number) {
-    return await this.characterRepository.findOneOrFail({ id });
+    const findOptions = { relations: [ 'comics', 'series', 'events', 'stories' ]};
+    const character = await this.characterRepository.findOneOrFail({ id }, findOptions);
+    const smallResourceChar = this.mapCharacterToSmallResource(character);
+
+    return new BaseSingleResponseData(200, 'Ok', smallResourceChar);
   }
 
   async findAllComicsFromCharacter(id: number, offset: number = 0, limit: number = 200) {
@@ -148,7 +152,7 @@ export class CharacterService {
     return await this.characterRepository.delete({ id });
   }
 
-  private mapCharactersToSmallResource(characters: any[]) {
+  private mapCharacterToSmallResource(character: any) {
     const baseUrl = this.configService.get('BASE_URL');
     const mapComic = (char, comic) => ({
       id: comic.id,
@@ -170,13 +174,15 @@ export class CharacterService {
       resourceURI: `${baseUrl}/characters/${char.id}/stories/${story.id}`
     });
 
-    return characters.map(char => {
-      console.log(char)
-      char.comics = char.comics.map(comic => mapComic(char, comic));
-      char.series = char.series.map(serie => mapSerie(char, serie));
-      char.events = char.events.map(event => mapEvent(char, event));
-      char.stories = char.stories.map(story => mapStory(char, story));
-      return char;
-    });
+    character.comics = character.comics.map(comic => mapComic(character, comic));
+    character.series = character.series.map(serie => mapSerie(character, serie));
+    character.events = character.events.map(event => mapEvent(character, event));
+    character.stories = character.stories.map(story => mapStory(character, story));
+
+    return character;
+  }
+
+  private mapCharactersToSmallResource(characters: any[]) {
+    return characters.map(this.mapCharacterToSmallResource.bind(this));
   }
 }
