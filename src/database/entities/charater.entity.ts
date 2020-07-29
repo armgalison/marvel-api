@@ -9,12 +9,12 @@ import {
   ManyToMany,
   OneToOne,
   PrimaryGeneratedColumn,
-  AfterInsert,
 } from 'typeorm';
 
+import { ComicEntity } from './comic.entity';
+import { EventEntity } from './event.entity';
 import { ImageEntity } from './image.entity';
 import { UrlEntity } from './url.entity';
-import { ComicEntity } from './comic.entity';
 
 @Entity({ name: 'character' })
 export class CharacterEntity extends BaseEntity {
@@ -41,6 +41,10 @@ export class CharacterEntity extends BaseEntity {
   @ManyToMany(type => ComicEntity, comic => comic.characters, { cascade: true })
   @JoinTable({ name: 'characters_comics' })
   comics?: ComicEntity[];
+
+  @ManyToMany(type => EventEntity, event => event.characters, { cascade: true })
+  @JoinTable({ name: 'characters_events' })
+  events?: EventEntity[];
 
   @BeforeInsert()
   @BeforeUpdate()

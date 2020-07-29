@@ -18,6 +18,8 @@ export class DuplicatedInterceptor implements NestInterceptor {
   }
 
   private throwDuplicatedEntityError(error) {
+    console.error(error);
+    
     if (error instanceof QueryFailedError) {
       throw new ConflictException('Already registered, please verify your payload.');
     }

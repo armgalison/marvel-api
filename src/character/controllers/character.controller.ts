@@ -5,7 +5,6 @@ import { CharacterEntity } from '../../database/entities/charater.entity';
 import { DuplicatedInterceptor } from '../../shared/interceptors/duplicated.interceptor';
 import { NotFoundInterceptor } from '../../shared/interceptors/not-found.interceptor';
 import { CharacterService } from '../services/character.service';
-import { of } from 'rxjs';
 
 @Controller('characters')
 export class CharacterController {

@@ -24,8 +24,8 @@ export class CharacterService {
     const code = 200;
     const findOptions: FindManyOptions = { skip: offset, take: limit, relations: [ 'comics' ] };
     const total = await this.characterRepository.count();
-    const count = await this.characterRepository.count(findOptions);
     const characters = await this.characterRepository.find(findOptions);
+    const count = characters.length;
     const results = this.mapCharactersToSmallResource(characters);
 
     return new BaseResponseData({ code, offset, limit, total, count, results });
