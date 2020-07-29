@@ -2,7 +2,7 @@
 
 ## Description
 
-This app is an example of Rest APIs using, based on the following Marvel API:
+This app is an example of an Rest Aplication, based on the following Marvel API:
 [Link](https://developer.marvel.com/docs#!/public)
 
 Developed using the framework Nest to have a good structure and to facilicate futures updates.
