@@ -5,14 +5,13 @@
 This app is an example of an Rest Aplication, based on the following Marvel API:
 [Link](https://developer.marvel.com/docs#!/public)
 
-Developed using the framework Nest to have a good structure and to facilicate futures updates.
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Developed using the framework Nest to have a good archtecture and to facilicate futures updates.
 
 In this app I decided to use sqlite3 as a database, to make it easier for anyone to test.
 
 ## Requirements
 ```bash
-NodeJS - latest
+Node.js - latest
 NPM - latest
 ```
 
