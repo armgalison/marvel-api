@@ -1,3 +1,4 @@
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import {
   BaseEntity,
   BeforeInsert,
@@ -23,28 +24,35 @@ export class SerieEntity extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @ApiProperty()
   @Column()
   title: string;
 
+  @ApiProperty()
   @Column()
   description: string;
   
+  @ApiPropertyOptional({ type: UrlEntity, isArray: true })
   @ManyToMany(type => UrlEntity, { eager: true, cascade: true })
   @JoinTable()
   urls?: UrlEntity[];
 
+  @ApiPropertyOptional()
   @Column({ nullable: true })
   startYear?: number;
 
+  @ApiPropertyOptional()
   @Column({ nullable: true })
   endYear?: number;
 
+  @ApiPropertyOptional()
   @Column({ nullable: true })
   rating?: string;
 
   @Column()
   modified: Date;
 
+  @ApiPropertyOptional({ type: ImageEntity })
   @OneToOne(type => ImageEntity, { eager: true, cascade: true })
   @JoinColumn()
   thumbnail?: ImageEntity;
@@ -54,7 +62,6 @@ export class SerieEntity extends BaseEntity {
 
   @ManyToMany(type => EventEntity, event => event.series)
   events?: EventEntity[];
-
 
   @ManyToMany(type => CharacterEntity, character => character.series)
   characters?: CharacterEntity[];

@@ -1,3 +1,5 @@
+
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import {
   BaseEntity,
   BeforeInsert,
@@ -19,21 +21,26 @@ export class EventEntity extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @ApiProperty()
   @Column()
   title: string;
 
+  @ApiProperty()
   @Column()
   description: string;
 
   @Column()
   modified: Date;
 
+  @ApiPropertyOptional()
   @Column({ nullable: true })
   start?: Date;
 
+  @ApiPropertyOptional()
   @Column({ nullable: true })
   end?: Date;
 
+  @ApiPropertyOptional({ type: ImageEntity })
   @OneToOne(type => ImageEntity, { eager: true, cascade: true })
   @JoinColumn()
   thumbnail?: ImageEntity;

@@ -1,3 +1,4 @@
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import {
   BaseEntity,
   BeforeInsert,
@@ -20,18 +21,22 @@ export class StoryEntity extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @ApiProperty()
   @Column()
   title: string;
 
+  @ApiProperty()
   @Column()
   description: string;
 
+  @ApiPropertyOptional()
   @Column({ nullable: true })
   type?: string;
 
   @Column()
   modified: Date;
 
+  @ApiPropertyOptional({ type: ImageEntity })
   @OneToOne(type => ImageEntity, { eager: true, cascade: true })
   @JoinColumn()
   thumbnail?: ImageEntity;
