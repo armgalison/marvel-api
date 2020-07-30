@@ -1,0 +1,5 @@
+.git
+assets
+dist
+Dockerfile
+node_module

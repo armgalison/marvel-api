@@ -38,14 +38,22 @@ $ npm run start:dev
 # production mode
 $ npm run start:prod
 ```
-PS: After run you can test this application by accessing the following URI "/v1/public/docs/".
+
+## Running docker
+
+```bash
+# build image
+$ docker build -t marvel-api .
+
+# run container
+$ docker run -p 3000:3000 --name marvel-api marvel-api
+```
 
 ## Stay in touch
 
-- Author: Alison Rafael
-  - [github](https://github.com/armgalison/)
-  - [linkedin](https://www.linkedin.com/in/armgalison/)
+- [Github](https://github.com/armgalison/)
+- [Linkedin](https://www.linkedin.com/in/armgalison/)
 
 ## License
 
-  [MIT licensed](LICENSE).
+  [MIT licensed](LICENSE)
