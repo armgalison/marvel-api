@@ -5,6 +5,8 @@
   Swagger URL: http://localhost:3000/v1/public/docs
 ```
 
+[LIVE DEMO](http://alisonrafael.me:3000/v1/public/docs/#/)
+
 ## Description
 
 This app is an example of an Rest Aplication, based on the following Marvel API:
