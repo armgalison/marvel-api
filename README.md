@@ -14,6 +14,16 @@ Developed using the framework Nest to have a good archtecture and to facilicate 
 
 In this app I decided to use sqlite3 as a database, to make it easier for anyone to test.
 
+## Known Issues
+
+- Tests in general (unit, integration and functional)
+- DTO creation to improove the SOC (Separation of concerns)
+
+## Next Steps
+1. Implement JWT bearer authentication and guards for the inputs APIs.
+2. Create new modules for (comics, creators, events, series and stories)
+3. Create new controllers and services for each new module.
+
 ## Requirements
 ```bash
 Node.js - latest
