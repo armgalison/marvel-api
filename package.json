@@ -23,7 +23,7 @@
   "dependencies": {
     "@nestjs/common": "^7.0.0",
     "@nestjs/config": "^0.5.0",
-    "@nestjs/core": "^7.0.0",
+    "@nestjs/core": "^9.0.5",
     "@nestjs/platform-express": "^7.0.0",
     "@nestjs/swagger": "^4.5.12",
     "mysql": "^2.18.1",
